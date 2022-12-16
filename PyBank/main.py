@@ -33,14 +33,22 @@ with open(pybank_csv) as csvfile:
     #loop through the data and pull the data into lists
 
     for row in csvreader:
+
+    #pull data into lists
+
         dates.append(row[0])
         results.append(row[1])
+
         #months += row[0]
         #profit_loss += row[1]
+
+    #calculate month to month changes
+
         profit_loss = int(row[1])
         change = profit_loss - previous
-        profit_loss = previous
         changes.append(change)
+        previous = profit_loss
+
 #look at the list of results and measure the change from month to month
 
 #for i in results[1:]:
@@ -85,14 +93,24 @@ print(f'Average Change : {average(changes)}')
 #for this we should subtract row+1 from row as we loop through the sheet, appending the results to a new dict. 
 # then we can average the values in that dict 
 
+#here we should zip the dates to the changes and then search that tuple
+
+zipped_data = zip(dates,changes)
+
 # The greatest increase in profits (date and amount) over the entire period
 
 print(f'Greatest Increase in Profits:')
 
-#here we can try to reuse the method from the last challenge of having if row is > row+ 1, saving in
-#a variable and checking if that variable is >
-#to return the date and amount, we need to search for it in that dict
+for row in zipped_data:
+    if row[1] == max(changes):
+        print(row)
 
 # The greatest decrease in profits (date and amount) over the entire period
 
+zipped_data = zip(dates,changes)
+
 print(f'Greatest Decrease in Profits:')
+
+for row in zipped_data:
+    if row[1] == min(changes):
+        print(row)
