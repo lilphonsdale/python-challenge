@@ -48,7 +48,7 @@ print(f'Total Months: {len(dates)}')
 # The net total amount of "Profit/Losses" over the entire period
 print(f'Total: ${sum(results)}')
 # The changes in "Profit/Losses" over the entire period, and then the average of those changes
-print(f'Average Change: ${(average(changes))}')
+print(f'Average Change: ${round((average(changes)))}')
 #here we should zip the dates to the changes and then search that tuple
 zipped_data = zip(dates,changes)
 # The greatest increase in profits (date and amount) over the entire period
@@ -74,7 +74,7 @@ with open('output', 'w') as txtfile:
     txtfile.write('\n')
     txtfile.write(f'Total: ${sum(results)}')
     txtfile.write('\n')
-    txtfile.write(f'Average Change: ${(average(changes))}')
+    txtfile.write(f'Average Change: ${round((average(changes)))}')
     txtfile.write('\n')
     zipped_data = zip(dates,changes)
     txtfile.write(f'Greatest Increase in Profits:')

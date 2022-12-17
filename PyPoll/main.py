@@ -49,9 +49,9 @@ with open(pypoll_csv) as csvfile:
 vote_totals = [doane,degette,stockham]
 
 # The percentage of votes each candidate won
-doane_share = doane / total_votes
-degette_share = degette/ total_votes
-stockham_share = stockham / total_votes
+doane_share = format((doane / total_votes),'.2%')
+degette_share = format((degette/ total_votes),'.2%')
+stockham_share = format((stockham / total_votes),'.2%')
 
 # results to print out
 print("Election Results")
