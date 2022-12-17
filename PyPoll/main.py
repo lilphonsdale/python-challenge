@@ -70,3 +70,18 @@ winner = zip(candidates,vote_totals)
 for row in winner:
     if row[1] == max(vote_totals):
         print(f'Winner: {row[0]}')
+
+#write the results into a txt
+
+with open('output', 'w') as txtfile:
+    txtfile.write("Election Results")
+    txtfile.write("-----------------------------------")
+    txtfile.write(f'Total Votes : {total_votes}')
+    txtfile.write("---------------------------------")
+    txtfile.write(f'{candidates[2]} {stockham_share} {stockham}')
+    txtfile.write(f'{candidates[1]} {degette_share} {degette}')
+    txtfile.write(f'{candidates[0]} {doane_share} {doane}')
+    winner = zip(candidates,vote_totals)
+    for row in winner:
+        if row[1] == max(vote_totals):
+            txtfile.write(f'Winner: {row[0]}')

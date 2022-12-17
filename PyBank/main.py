@@ -46,9 +46,9 @@ print("-----------------------------------")
 # The total number of months included in the dataset
 print(f'Total Months: {len(dates)}')
 # The net total amount of "Profit/Losses" over the entire period
-print(f'Total :{sum(results)}')
+print(f'Total: ${sum(results)}')
 # The changes in "Profit/Losses" over the entire period, and then the average of those changes
-print(f'Average Change :$ {(average(changes))}')
+print(f'Average Change: ${(average(changes))}')
 #here we should zip the dates to the changes and then search that tuple
 zipped_data = zip(dates,changes)
 # The greatest increase in profits (date and amount) over the entire period
@@ -66,10 +66,18 @@ for row in zipped_data:
 #write the results into a txt
 
 with open('output', 'w') as txtfile:
-    csvwriter = csv.writer(csvfile, delimiter=',')
-
-    #write a header row
-    csvwriter.writerow(['place', 'population', 'per_capita_income', 'unemployed_civilians', 'poverty_count'])
-
-    for data in zipped_file:
-        csvwriter.writerow(data)
+    txtfile.write("Financial Analysis")
+    txtfile.write("-----------------------------------")
+    txtfile.write(f'Total Months: {len(dates)}')
+    txtfile.write(f'Total: ${sum(results)}')
+    txtfile.write(f'Average Change: ${(average(changes))}')
+    zipped_data = zip(dates,changes)
+    txtfile.write(f'Greatest Increase in Profits:')
+    for row in zipped_data:
+        if row[1] == max(changes):
+            txtfile.write(str((row)))
+    zipped_data = zip(dates,changes)
+    txtfile.write(f'Greatest Decrease in Profits:')
+    for row in zipped_data:
+        if row[1] == min(changes):
+            txtfile.write(str((row)))
