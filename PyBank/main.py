@@ -9,7 +9,6 @@ pybank_csv = os.path.join("Resources","budget_data.csv")
 dates = []
 results = []
 changes = []
-changes_backup = []
 
 # make a boolean variable for the first row
 is_first_row = True
@@ -29,13 +28,15 @@ with open(pybank_csv) as csvfile:
         if not is_first_row:
             change = profit_loss - previous
             changes.append(change)
+        else:
+            changes.append(0)
         # prepare for next row
         is_first_row = False
         previous = profit_loss
 
 # function to find the average changes
 def average(changes):
-    length = len(changes) 
+    length = len(changes)-1
     total = sum(changes)
     return total/ length
 
