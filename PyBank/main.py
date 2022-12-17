@@ -67,15 +67,21 @@ for row in zipped_data:
 
 with open('output', 'w') as txtfile:
     txtfile.write("Financial Analysis")
+    txtfile.write('\n')
     txtfile.write("-----------------------------------")
+    txtfile.write('\n')
     txtfile.write(f'Total Months: {len(dates)}')
+    txtfile.write('\n')
     txtfile.write(f'Total: ${sum(results)}')
+    txtfile.write('\n')
     txtfile.write(f'Average Change: ${(average(changes))}')
+    txtfile.write('\n')
     zipped_data = zip(dates,changes)
     txtfile.write(f'Greatest Increase in Profits:')
     for row in zipped_data:
         if row[1] == max(changes):
             txtfile.write(str((row)))
+    txtfile.write('\n')
     zipped_data = zip(dates,changes)
     txtfile.write(f'Greatest Decrease in Profits:')
     for row in zipped_data:
