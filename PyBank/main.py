@@ -62,3 +62,14 @@ print(f'Greatest Decrease in Profits:')
 for row in zipped_data:
     if row[1] == min(changes):
         print(row)
+
+#write the results into a txt
+
+with open('output', 'w') as txtfile:
+    csvwriter = csv.writer(csvfile, delimiter=',')
+
+    #write a header row
+    csvwriter.writerow(['place', 'population', 'per_capita_income', 'unemployed_civilians', 'poverty_count'])
+
+    for data in zipped_file:
+        csvwriter.writerow(data)

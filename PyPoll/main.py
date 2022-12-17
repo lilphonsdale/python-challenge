@@ -24,15 +24,49 @@ with open(pypoll_csv) as csvfile:
 
 #The total number of votes cast
 total_votes = len(voter_id)
-print(f'Total Votes : {total_votes}' )
 
 #A complete list of candidates who received votes
 candidates = list(set(candidate))
-print(candidates)
+
+#count each candidates votes
+doane = 0
+degette = 0
+stockham = 0
+
+#read the csv again
+with open(pypoll_csv) as csvfile:
+    csvreader = csv.reader(csvfile,delimiter=",")
+    #store the header
+    header = next(csvreader)
+    #loop through the data and pull the data into lists
+    for row in csvreader:
+        if row[2] == candidates[0]:
+            doane = doane+1 
+        elif row[2] == candidates[1]:
+            degette = degette+1
+        elif row[2] == candidates [2]:
+            stockham = stockham+1
+
+vote_totals = [doane,degette,stockham]
 
 #The percentage of votes each candidate won
 
+doane_share = doane / total_votes
+degette_share = degette/ total_votes
+stockham_share = stockham / total_votes
 
-#The total number of votes each candidate won
+# results to print out
+print("Election Results")
+print("---------------------------------")
+print(f'Total Votes : {total_votes}')
+print("---------------------------------")
+print(f'{candidates[2]} {stockham_share} {stockham}')
+print(f'{candidates[1]} {degette_share} {degette}')
+print(f'{candidates[0]} {doane_share} {doane}')
 
 #The winner of the election based on popular vote
+
+winner = zip(candidates,vote_totals)
+for row in winner:
+    if row[1] == max(vote_totals):
+        print(f'Winner: {row[0]}')
